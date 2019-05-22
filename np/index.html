@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<!-- based on Bootstrap theme. -->
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>FGO 보구딜 계산기</title>
+
+</head>
+
+<body>
+
+<div class="container">
+  
+  <h2 align="center">FGO 보구딜 계산기</h1>
+
+  <p align="center">서번트의 보구 데미지를 계산합니다.</p>
+
+  <form>
+    <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="ATK">공격력 (포우,예장 포함):</label>
+      <input id="ATK" type="number" class="form-control" min="0" step="1000" value="10000">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="ServantClass">클래스:</label>
+        <select class="form-control" id="ServantClass">
+          <option value="Saber"> 세이버 </option>
+          <option value="Archer"> 아처 </option>
+          <option value="Lancer"> 랜서 </option>
+          <option value="Rider"> 라이더 </option>
+          <option value="Caster"> 캐스터 </option>
+          <option value="Assassin"> 어새신 </option>
+          <option value="Berserker"> 버서커 </option>
+          <option value="Extra110"> 룰러, 어벤저 </option>
+          <option value="Extra100"> 실더, 문캔서, 얼터에고, 포리너 </option>
+        </select>
+    </div>
+
+    </div>
+
+    <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="NPType">보구 종류:</label>
+      <select class="form-control" id="NPType">
+        <option value="0"> 버스터 대인 </option>
+        <option value="1"> 버스터 대군 </option>
+        <option value="2"> 아츠 대인 </option>
+        <option value="3"> 아츠 대군 </option>
+        <option value="4"> 퀵 대인 </option>
+        <option value="5"> 퀵 대군 </option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="NPQuest">보구퀘 유무:</label>
+        <select class="form-control" id="NPQuest">
+          <option value="0"> 아니오 </option>
+          <option value="1"> 예 </option>
+        </select>
+    </div>
+
+    </div>
+    
+    <div class="form-row">
+
+    <div class="form-group col-md-6">
+        <label for="NPLvl">보구레벨:</label>
+        <select class="form-control" id="NPLvl">
+          <option value="1"> 1 </option>
+          <option value="2"> 2 </option>
+          <option value="3"> 3 </option>
+          <option value="4"> 4 </option>
+          <option value="5"> 5 </option>
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="checkManualNPMultiplier"> 
+          보구 배율 (%) (수동입력
+          <input id="checkManualNPMultiplier" type="checkbox" value="manual">
+          ):
+        </label>
+        <input id="NPMultiplier" type="text" class="form-control" value="600" readonly>
+    </div>
+
+    </div>
+
+    <div class="form-row">
+
+    <div class="form-group col-md-3">
+        <label for="buffATK"> 공격력상승 버프 (%):</label>
+        <input id="buffATK" type="number" class="form-control" step="10" value="0">
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="debuffATK"> 적 방어력하락 디버프 (%):</label>
+      <input id="debuffATK" type="number" class="form-control" step="10" value="0">
+    </div>
+
+    <div class="form-group col-md-3">
+        <label for="buffCard">카드성능 상승 버프 (%):</label>
+        <input id="buffCard" type="number" class="form-control" step="10" value="0">
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="debuffCard"> 적 카드내성 하락 디버프 (%):</label>
+      <input id="debuffCard" type="number" class="form-control" step="10" value="0">
+    </div>
+
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-md-3">
+            <label for="buffNPPlus"> 보구강화(보뻥) (%):</label>
+            <input id="buffNPPlus" type="number" class="form-control" step="10" value="0">
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="buffSPSkill"> 특공 버프(스킬) (%):</label>
+          <input id="buffSPSkill" type="number" class="form-control" step="10" value="0">
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="buffNPMinus">적 특방 버프 (%):</label>
+          <input id="buffNPMinus" type="number" class="form-control" step="10" value="0">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="buffSP"> 보구 자체 특공배율 (%): </label>
+            <input id="buffSP" type="number" class="form-control" min="0" step="10" value="0">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group col-md-6">
+          <label for="againstClass">상성:</label>
+          <select class="form-control" id="againstClass">
+            <option value="1"> 무상성 (100%) </option>
+            <option value="1.5"> 버서커, 얼터에고 (150%) </option>
+            <option value="2"> 클래스 상성 (200%) </option>
+            <option value="0.5"> 상성불리 (50%) </option>
+          </select>
+      </div>
+        
+      <div class="form-group col-md-6">
+          <label for="againstHidden">히든상성:</label>
+          <select class="form-control" id="againstHidden">
+            <option value="1"> 무상성 (100%) </option>
+            <option value="1.1"> 상성유리 (110%) </option>
+            <option value="0.9"> 상성불리 (90%) </option>
+          </select>
+      </div>
+
+    </div>
+
+  </form>
+
+  <a class="btn btn-info btn-block" data-toggle="modal" href="#desc">추가설명 보기</a>
+
+  <div class="modal fade" id="desc" role="document">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="desc">추가설명</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p> 같은 종류의 버프가 여러개 있을 경우 합산하여 계산 (예: 버스터 30% 상승, 버스터 20% 상승 버프가 동시에 있을 경우 버스터 50% 상승으로 계산).</p>
+          <p> 아군에 대한 디버프는 음수의 버프로 계산 (예: 버스터 30% 상승 버프와 버스터 10% 하락 디버프가 있을 경우 버스터 20% 버프로 계산). </p>
+          <p> 이벤트 한정 공격력 상승(공뻥) 예장은 특공 버프(스킬)에 합산 (예: 신성특공 버프 50%와 이벤트 공뻥 100%가 있을 경우 특공 버프(스킬) 150%로 계산).</p>
+          <p> 보구 자체 특공배율의 경우 배율 자체를 입력 (예: 오버차지 100% 기준 길가메시는 150%, 모드레드는 180% 입력). <br>
+            특공이 없는 서번트는 0% 또는 100%를 입력하면 됨 (0%는 내부에서 100%로 변환되어 계산됨).
+          </p>
+          <p> 데미지 플러스 버프는 결과값에 그대로 합산하면 됨. </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  
+  <button type="button" id="calcButton" class="btn btn-primary btn-lg btn-block">계산하기</button><br><br>
+
+  <div class="jumbotron">
+    <h2 id="NPDamageMin"> 보구딜 최소: </h2> 
+    <h2 id="NPDamageMed"> 보구딜 기본: </h2> 
+    <h2 id="NPDamageMax"> 보구딜 최대: </h2> 
+  </div>
+
+  <button type="button" id="backButton" class="btn btn-secondary btn-lg btn-block">메인 메뉴로</button><br><br>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+  <!-- summon calculator script -->
+  <script src="npScript.js"></script>
+
+</div>
+
+</body>
+
+</html>

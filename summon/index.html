@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+
+<!-- based on Bootstrap theme. -->
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>FGO 소환확률 계산기</title>
+
+</head>
+
+<body>
+
+<div class="container">
+  
+  <h2 align="center">FGO 소환확률 계산기</h1>
+
+  <p align="center">준비된 성정석과 호부를 소모하여 특정 픽업 카드를 지정된 수만큼 뽑는데 성공할 확률을 계산합니다.</p>
+
+  <form>
+
+    <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="Type">픽업구분:</label>
+      <select class="form-control" id="Type">
+        <option value="0.7">5성 서번트 (단독) - 0.7%</option>
+        <option value="0.4">5성 서번트 (2중) - 0.4%</option>
+        <option value="0.333">5성 서번트 (3중) - 0.333%</option>
+        <option value="2.8">5성 개념예장 (단독) - 2.8%</option>
+        <option value="1.5">4성 서번트 (단독) - 1.5%</option>
+        <option value="1.2">4성 서번트 (2중) - 1.2%</option>
+        <option value="0.75">4성 서번트 (3중) - 0.75%</option>
+        <option value="0.7">4성 서번트 (4중) - 0.7%</option>
+        <option value="0.5">4성 서번트 (5중) - 0.5%</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="Success">목표 보구레벨:</label>
+        <select class="form-control" id="Success">
+          <option value="1"> 1 </option>
+          <option value="2"> 2 </option>
+          <option value="3"> 3 </option>
+          <option value="4"> 4 </option>
+          <option value="5"> 5 </option>
+        </select>
+    </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group col-md-6">
+        <label for="SQ">성정석 소비량:</label>
+        <input id="SQ" type="number" class="form-control" min="0" step="30" value="30">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="Tickets">호부 소비량:</label>
+        <input id="Tickets" type="number" class="form-control" min="0" step="10" value="0">
+      </div>
+  
+    </div>
+  
+    <div class="form-group">
+        <label for="Trials">총 가챠횟수 (최대 3000회):</label>
+        <input id="Trials" type="text" class="form-control" value="10" readonly>
+    </div>
+
+  </form>
+
+  <br>
+
+  <button type="button" id="calcButton" class="btn btn-primary btn-lg btn-block">계산하기</button><br><br>
+
+  <div class="jumbotron">
+    <h2 id="drawProb"> 성공확률: </h2> 
+  </div>
+
+  <button type="button" id="backButton" class="btn btn-secondary btn-lg btn-block">메인 메뉴로</button><br>
+
+  <p>10연챠시 4성 확정은 계산에 영향을 미치지 않을 가능성이 높음. 자세한 내용은 <a data-toggle="modal" href="#note">클릭</a></p>
+
+  <p>성공확률에서 소수점 넷째 자리 미만은 버림.</p>
+
+  <div class="modal fade" id="note" role="document">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="note">4성 확정 확률에 대하여</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>FGO의 소환 확률은</p>
+          <p>5성 서번트 1% 예장 4%<br>
+             4성 서번트 3% 예장 12%<br>
+             3성 80%</p>
+          <p>로 되어 있는데</p>
+          <p>10연챠시 4성 확정으로 뽑게 되면</p>
+          <p>5성 서번트 5% 예장 20%<br>
+             4성 서번트 15% 예장 60%</p>
+          <p>이런 식으로 5성과 4성 서번트가 확률업되어 나올거라고 생각할 수 있지만</p>
+          <p>실제로는 아래와 같이 나올 가능성이 크다.</p>
+          <p>5성 서번트 1% 예장 4%<br>
+             4성 서번트 3% 예장 92%</p>
+          <p>이는 같은 흑우겜 데레스테와 밀리시타를 보면 알 수 있는데</p>
+          <p>데레스테 게임 내 공지를 보면</p>
+          <p>평소 확률은 SSR 3% SR 12% R 85% 이고</p>
+          <p>SR이상 확정시에는 SSR 3% SR 97% 로 뽑힌다고 적혀 있다.</p>
+          <p>따라서 FGO도 마찬가지로 4성 예장만 확률이 엄청나게 오를거라고 생각하는 것이 자연스럽다.</p>
+          <p>다시는 딜라를 무시하지 말자</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+  <!-- library for loading CSV files -->
+  <script src="../lib/PapaParse/papaparse.min.js"></script>
+  
+  <!-- summon calculator script -->
+  <script src="summonScript.js"></script>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+
+<!-- based on Bootstrap theme. -->
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>FGO 경험치 계산기</title>
+
+</head>
+
+<body>
+
+<div class="container">
+  
+  <h2 align="center">FGO 경험치 계산기</h1>
+
+  <p align="center">서번트의 목표 레벨 도달까지 필요한 4성 종화의 양, 또는 준비된 4성 종화를 소모했을 때의 도달 레벨을 계산합니다.</p>
+
+  <div class="form-group">
+    <label for="calcType">계산 종류:</label>
+    <select class="form-control" id="calcType">
+      <option value="1">종화 필요량 계산</option>
+      <option value="2">경험치 획득량 계산</option>
+    </select>
+  </div>
+
+  <form class="form-row">
+
+  <form>
+    <div class="form-group col-md-6">
+      <label for="CurrentLvl">현재 레벨 (1-100):</label>
+      <input id="CurrentLvl" type="number" class="form-control" min="1" max="100" step="10" value="1">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="TargetLvl">목표 레벨 (1-100):</label>
+      <input id="TargetLvl" type="number" class="form-control" min="1" max="100" step="10" value="90">
+    </div>
+  </form>
+
+  </form>
+
+  <form class="form-row">
+
+    <form>
+      <div class="form-group col-md-6">
+        <label for="consumeBonus">4성 종화 소모량 (보너스):</label>
+        <input id="consumeBonus" type="number" class="form-control" min="0" step="10" value="0" readonly>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="consumeNoBonus">4성 종화 소모량 (보너스 없음):</label>
+        <input id="consumeNoBonus" type="number" class="form-control" min="0" step="10" value="0" readonly>
+      </div>
+    </form>
+  
+  </form>
+
+  <br>
+
+  <button type="button" id="calcButton" class="btn btn-primary btn-lg btn-block">계산하기</button><br><br>
+
+  <div class="jumbotron">
+    <h2 id="resultRow"> 필요 4성 종화(보너스): <br><br> 필요 4성 종화(보너스 없음): </h2>
+  </div>
+
+  <button type="button" id="backButton" class="btn btn-secondary btn-lg btn-block">메인 메뉴로</button><br>
+
+  <p> 경험치 표 출처: fategrandorder.wikia.com </p>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+  <!-- library for loading CSV files -->
+  <script src="../lib/PapaParse/papaparse.min.js"></script>
+  
+  <!-- summon calculator script -->
+  <script src="expScript.js"></script>
+
+</div>
+
+</body>
+
+</html>
