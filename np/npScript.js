@@ -253,7 +253,7 @@ function updateBuff() {
         buffInfo["buffSP"] = buffSPmult;
     }
 
-    setBuffATK.innerHTML = "공격력 상승 " + buffATKUp.value + "%, , 적 방어력 하락 " + buffATKDown.value + "%";
+    setBuffATK.innerHTML = "공격력 상승 " + buffATKUp.value + "%, 적 방어력 하락 " + buffATKDown.value + "%";
     setBuffCard.innerHTML = "성능 상승 " + buffCardUp.value + "%, 적 내성 하락 " + buffCardDown.value + "%";
     setBuffNP.innerHTML = "위력상승 " + buffNPUp.value + "%, 특공(스킬) " + buffSPSkillUp.value + "%, 적 특방 " + buffSPSkillDown.value + "%";
 
