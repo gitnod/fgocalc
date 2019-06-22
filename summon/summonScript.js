@@ -1,42 +1,4 @@
 
-// load HTML objects
-var calcTypeSimple = document.getElementById("calcTypeSimple");
-var calcTypeAdvanced = document.getElementById("calcTypeAdvanced");
-
-var pickup_5star_1 = document.getElementById("pickup_5star_1");
-var pickup_5star_2 = document.getElementById("pickup_5star_2");
-var pickup_5star_3 = document.getElementById("pickup_5star_3");
-var pickup_4star_1 = document.getElementById("pickup_4star_1");
-var pickup_4star_2 = document.getElementById("pickup_4star_2");
-var pickup_4star_3 = document.getElementById("pickup_4star_3");
-var pickup_4star_4 = document.getElementById("pickup_4star_4");
-var pickup_4star_5 = document.getElementById("pickup_4star_5");
-
-var pickup_5star_1_input = document.getElementById("pickup_5star_1_input");
-var pickup_5star_2_input = document.getElementById("pickup_5star_2_input");
-var pickup_5star_3_input = document.getElementById("pickup_5star_3_input");
-var pickup_4star_1_input = document.getElementById("pickup_4star_1_input");
-var pickup_4star_2_input = document.getElementById("pickup_4star_2_input");
-var pickup_4star_3_input = document.getElementById("pickup_4star_3_input");
-var pickup_4star_4_input = document.getElementById("pickup_4star_4_input");
-var pickup_4star_5_input = document.getElementById("pickup_4star_5_input");
-
-var pickup_5star_1_input_container = document.getElementById("pickup_5star_1_input_container");
-var pickup_5star_2_input_container = document.getElementById("pickup_5star_2_input_container");
-var pickup_5star_3_input_container = document.getElementById("pickup_5star_3_input_container");
-var pickup_4star_1_input_container = document.getElementById("pickup_4star_1_input_container");
-var pickup_4star_2_input_container = document.getElementById("pickup_4star_2_input_container");
-var pickup_4star_3_input_container = document.getElementById("pickup_4star_3_input_container");
-var pickup_4star_4_input_container = document.getElementById("pickup_4star_4_input_container");
-var pickup_4star_5_input_container = document.getElementById("pickup_4star_5_input_container");
-
-var expenditureSQ = document.getElementById("expenditureSQ");
-var expenditureTicket = document.getElementById("expenditureTicket");
-
-var drawProb = document.getElementById("drawProb");
-var calcButton = document.getElementById("calcButton");
-var backButton = document.getElementById("backButton");
-
 var pickup_5star = 1;
 var pickup_4star = 1;
 var pickupProb_5star = [0.007, 0.004, 0.00333];
