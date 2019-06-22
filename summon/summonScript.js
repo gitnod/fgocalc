@@ -328,6 +328,9 @@ calcTypeSimple.addEventListener("click", function() {
     calcRowSimple.hidden = false;
     calcRowAdvanced.hidden = true;
 
+    // update description
+    desc.innerHTML = "준비된 성정석과 호부를 소모하여 특정 픽업 카드를 지정된 수만큼 뽑는데 성공할 확률을 계산합니다.";
+
 })
 
 // activate advanced calcucation mode
@@ -340,6 +343,9 @@ calcTypeAdvanced.addEventListener("click", function() {
     // update calculation button row
     calcRowSimple.hidden = true;
     calcRowAdvanced.hidden = false;
+
+    // update description
+    desc.innerHTML = "준비된 성정석과 호부를 소모하여 여러 종류의 픽업 카드를 각각 지정된 수만큼 뽑는데 성공할 확률을 계산합니다.";
 
 })
 
