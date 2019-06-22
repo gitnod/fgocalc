@@ -191,10 +191,14 @@ function computeAndUpdateSuccessProbabilitySimple() {
     // read number of trials
     var trials = Math.floor(Number(expenditureSQ.value)/3 + Number(expenditureTicket.value));
 
-    // compute and update success probability
-    var successProb = smultinom_inclusive([Number(setSuccessSimple.value)], multinomCombinationsDictionary, trials, [pickupSimpleProb]);
-    drawProb.innerHTML = '성공확률: ' + Math.floor(successProb * 100 * 10000) / 10000 + '%';
-
+    // compute and update success probability. Check range before computation.
+    var success = Number(setSuccessSimple.value);
+    if(success < 0 || success > 5) {
+        drawProb.innerHTML = '오류: 보구레벨은 0과 5 사이여야 합니다.';
+    } else {
+        var successProb = smultinom_inclusive([Number(setSuccessSimple.value)], multinomCombinationsDictionary, trials, [pickupSimpleProb]);
+        drawProb.innerHTML = '성공확률: ' + Math.floor(successProb * 100 * 10000) / 10000 + '%';
+    }
 }
 
 // compute success probability under advanced calculation
@@ -227,9 +231,11 @@ function computeAndUpdateSuccessProbabilityAdvanced() {
         }
     }
 
-    // return error if array length is out of varDim range, otherwise compute probability
+    // return error if array length or success vector is out of varDim range, otherwise compute probability
     if(multinomVarDimMax < prob.length) {
         drawProb.innerHTML = '오류: 동시에 노리는 서번트는 최대 ' + multinomVarDimMax + '종 까지 계산 가능합니다.';
+    } else if(Math.min.apply(null, success) < 0 || Math.max.apply(null, success) > 5) {
+        drawProb.innerHTML = '오류: 보구레벨은 0과 5 사이여야 합니다.';
     } else {
         // compute and update success probability
         var successProb = smultinom_inclusive(success, multinomCombinationsDictionary, trials, prob);
