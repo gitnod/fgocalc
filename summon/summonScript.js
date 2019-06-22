@@ -217,7 +217,7 @@ function updateSuccessDisplay() {
 // update expenditure display
 function updateExpenditureDisplay() {
 
-    var expenditureText = '성정석(' + expenditureSQ.value + '), 호부(' + expenditureTicket.value + ') - 총 가챠횟수 ' + Math.floor(Number(expenditureSQ.value)/3 + Number(expenditureTicket.value)) + '회';
+    var expenditureText = '성정석(' + expenditureSQ.value + '), 호부(' + expenditureTicket.value + ') - 총 가챠 ' + Math.floor(Number(expenditureSQ.value)/3 + Number(expenditureTicket.value)) + '회';
     setExpenditure.innerHTML = expenditureText;
     setExpenditureSimple.innerHTML = expenditureText;
 
