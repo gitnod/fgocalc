@@ -1,7 +1,7 @@
 
 setwd("C:/GitRepo/fgocalc/lib/multinom/")
 
-minVar = 2
+minVar = 1
 maxVar = 6
 maxSuccess = 5
 
