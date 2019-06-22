@@ -1,14 +1,4 @@
 
-var NPDamageMin = document.getElementById("NPDamageMin");
-var NPDamageMed = document.getElementById("NPDamageMed");
-var NPDamageMax = document.getElementById("NPDamageMax");
-
-var calcButton = document.getElementById("calcButton");
-var backButton = document.getElementById("backButton");
-
-var ATK = document.getElementById("ATK");
-var servantClass = "servantClassSaber"; // key for classMultArray
-
 var servantInfo = {
     "servantClass":"servantClassSaber",
     "npCardType":"npCardTypeBuster",
@@ -116,50 +106,6 @@ var againstHiddenDictionary = {
     "againstHidden110":1.1,
     "againstHidden090":0.9
 }
-
-
-
-
-
-
-
-
-var cardMultArray = [
-    1.5, 1.5,
-    1, 1,
-    0.8, 0.8
-];
-
-var NPMultiplierArray = [
-    [
-        [6, 10], // 버스터 대인
-        [8, 12], // 버스터 대인 보구퀘
-    ],
-    [
-        [3, 5], // 버스터 대군
-        [4, 6] // 버스터 대군 보구퀘
-    ],
-    [
-        [9, 15], // 아츠 대인
-        [12, 18] // 아츠 대인 보구퀘
-    ],
-    [
-        [4.5, 7.5], // 아츠 대군
-        [6, 9] // 아츠 대군 보구퀘
-    ],
-    [
-        [12, 20], // 퀵 대인
-        [16, 24] // 퀵 대인 보구퀘
-    ],
-    [
-        [6, 10], // 퀵 대군
-        [8, 12] // 퀵 대군 보구퀘
-    ]
-];
-
-var NPLevelMultiplier = [
-    0, 0.5, 0.75, 0.875, 1
-];
 
 // update class choice
 function updateServantClass(id) {
