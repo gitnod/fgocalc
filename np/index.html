@@ -11,7 +11,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <title>FGO 보구딜 계산기</title>
+  <title>FGO 보구 데미지 계산기</title>
 
 </head>
 
@@ -19,147 +19,64 @@
 
 <div class="container">
   
-  <h2 align="center">FGO 보구딜 계산기</h1>
+  <h2 align="center">FGO 보구 데미지 계산기</h1>
 
   <p align="center">서번트의 보구 데미지를 계산합니다.</p>
 
   <form>
     <div class="form-row">
 
-    <div class="form-group col-md-6">
-      <label for="ATK">공격력 (포우,예장 포함):</label>
-      <input id="ATK" type="number" class="form-control" min="0" step="1000" value="10000">
-    </div>
-    <div class="form-group col-md-6">
-        <label for="ServantClass">클래스:</label>
-        <select class="form-control" id="ServantClass">
-          <option value="Saber"> 세이버 </option>
-          <option value="Archer"> 아처 </option>
-          <option value="Lancer"> 랜서 </option>
-          <option value="Rider"> 라이더 </option>
-          <option value="Caster"> 캐스터 </option>
-          <option value="Assassin"> 어새신 </option>
-          <option value="Berserker"> 버서커 </option>
-          <option value="Extra110"> 룰러, 어벤저 </option>
-          <option value="Extra100"> 실더, 문캔서, 얼터에고, 포리너 </option>
-        </select>
-    </div>
-
-    </div>
-
-    <div class="form-row">
-
-    <div class="form-group col-md-6">
-      <label for="NPType">보구 종류:</label>
-      <select class="form-control" id="NPType">
-        <option value="0"> 버스터 대인 </option>
-        <option value="1"> 버스터 대군 </option>
-        <option value="2"> 아츠 대인 </option>
-        <option value="3"> 아츠 대군 </option>
-        <option value="4"> 퀵 대인 </option>
-        <option value="5"> 퀵 대군 </option>
-      </select>
-    </div>
-    <div class="form-group col-md-6">
-        <label for="NPQuest">보구퀘 유무:</label>
-        <select class="form-control" id="NPQuest">
-          <option value="0"> 아니오 </option>
-          <option value="1"> 예 </option>
-        </select>
-    </div>
-
-    </div>
-    
-    <div class="form-row">
-
-    <div class="form-group col-md-6">
-        <label for="NPLvl">보구레벨:</label>
-        <select class="form-control" id="NPLvl">
-          <option value="1"> 1 </option>
-          <option value="2"> 2 </option>
-          <option value="3"> 3 </option>
-          <option value="4"> 4 </option>
-          <option value="5"> 5 </option>
-        </select>
-    </div>
-    <div class="form-group col-md-6">
-        <label for="checkManualNPMultiplier"> 
-          보구 배율 (%) (수동입력
-          <input id="checkManualNPMultiplier" type="checkbox" value="manual">
-          ):
-        </label>
-        <input id="NPMultiplier" type="text" class="form-control" value="600" readonly>
-    </div>
-
-    </div>
-
-    <div class="form-row">
-
-    <div class="form-group col-md-3">
-        <label for="buffATK"> 공격력상승 버프 (%):</label>
-        <input id="buffATK" type="number" class="form-control" step="10" value="0">
-    </div>
-
-    <div class="form-group col-md-3">
-      <label for="debuffATK"> 적 방어력하락 디버프 (%):</label>
-      <input id="debuffATK" type="number" class="form-control" step="10" value="0">
-    </div>
-
-    <div class="form-group col-md-3">
-        <label for="buffCard">카드성능 상승 버프 (%):</label>
-        <input id="buffCard" type="number" class="form-control" step="10" value="0">
-    </div>
-
-    <div class="form-group col-md-3">
-      <label for="debuffCard"> 적 카드내성 하락 디버프 (%):</label>
-      <input id="debuffCard" type="number" class="form-control" step="10" value="0">
-    </div>
-
-    </div>
-
-    <div class="form-row">
-
-        <div class="form-group col-md-3">
-            <label for="buffNPPlus"> 보구강화(보뻥) (%):</label>
-            <input id="buffNPPlus" type="number" class="form-control" step="10" value="0">
-        </div>
-
-        <div class="form-group col-md-3">
-          <label for="buffSPSkill"> 특공 버프(스킬) (%):</label>
-          <input id="buffSPSkill" type="number" class="form-control" step="10" value="0">
-        </div>
-
-        <div class="form-group col-md-3">
-          <label for="buffNPMinus">적 특방 버프 (%):</label>
-          <input id="buffNPMinus" type="number" class="form-control" step="10" value="0">
-        </div>
-
-        <div class="form-group col-md-3">
-            <label for="buffSP"> 보구 자체 특공배율 (%): </label>
-            <input id="buffSP" type="number" class="form-control" min="0" step="10" value="0">
-        </div>
-
-    </div>
-
-    <div class="form-row">
-
-      <div class="form-group col-md-6">
-          <label for="againstClass">상성:</label>
-          <select class="form-control" id="againstClass">
-            <option value="1"> 무상성 (100%) </option>
-            <option value="1.5"> 버서커, 얼터에고 (150%) </option>
-            <option value="2"> 클래스 상성 (200%) </option>
-            <option value="0.5"> 상성불리 (50%) </option>
-          </select>
+      <div class="form-group col-md-4">
+        <label for="ATK">공격력 (포우,예장 포함):</label>
+        <input id="ATK" type="number" class="form-control" min="0" step="1000" value="10000">
       </div>
-        
-      <div class="form-group col-md-6">
-          <label for="againstHidden">히든상성:</label>
-          <select class="form-control" id="againstHidden">
-            <option value="1"> 무상성 (100%) </option>
-            <option value="1.1"> 상성유리 (110%) </option>
-            <option value="0.9"> 상성불리 (90%) </option>
-          </select>
+
+      <div class="form-group col-md-4">
+        <label for="setServantDesc">서번트 정보 (설정하려면 클릭):</label>
+        <button id="setServantDesc" type="button" data-toggle="modal" data-target="#servantDescDialog" class="btn btn-outline-dark btn-block">세이버, 버스터 대인</button>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="setNpLvlDesc">보구 레벨과 배율 (설정하려면 클릭):</label>
+        <button id="setNpLvlDesc" type="button" data-toggle="modal" data-target="#servantDescDialog" class="btn btn-outline-dark btn-block">레벨 1, 퀘스트 &#10007;, 배율 600%</button>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group col-md-4">
+        <label for="setBuffATK">공격력 버프/디버프:</label>
+        <button id="setBuffATK" type="button" data-toggle="modal" data-target="#buffDialog" class="btn btn-outline-dark btn-block">공격력 상승 0%, 적 방어력 하락 0%</button>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="setBuffCard">카드성능 버프/디버프:</label>
+        <button id="setBuffCard" type="button" data-toggle="modal" data-target="#buffDialog" class="btn btn-outline-dark btn-block">성능 상승 0%, 적 내성 하락 0%</button>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="setBuffNP">보구위력 버프/디버프:</label>
+        <button id="setBuffNP" type="button" data-toggle="modal" data-target="#buffDialog" class="btn btn-outline-dark btn-block">위력상승 0%, 특공(스킬) 0%, 적 특방 0%</button>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group col-md-4">
+        <label for="buffNP">보구 자체 특공배율:</label>
+        <input id="buffSP" type="number" class="form-control" min="0" step="10" value="0">
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="setAgainstClass">상성:</label>
+        <button id="setAgainstClass" type="button" data-toggle="modal" data-target="#againstDialog" class="btn btn-outline-dark btn-block">무상성 (100%)</button>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="setAgainstHidden">히든상성:</label>
+        <button id="setAgainstHidden" type="button" data-toggle="modal" data-target="#againstDialog" class="btn btn-outline-dark btn-block">무상성 (100%)</button>
       </div>
 
     </div>
@@ -167,6 +84,305 @@
   </form>
 
   <a class="btn btn-info btn-block" data-toggle="modal" href="#desc">추가설명 보기</a>
+
+  <br>
+  
+  <button type="button" id="calcButton" class="btn btn-primary btn-lg btn-block">계산하기</button><br><br>
+
+  <div class="jumbotron">
+    <h2 id="NPDamageMin"> 보구딜 최소: </h2> 
+    <h2 id="NPDamageMed"> 보구딜 기본: </h2> 
+    <h2 id="NPDamageMax"> 보구딜 최대: </h2> 
+  </div>
+
+  <button type="button" id="backButton" class="btn btn-secondary btn-lg btn-block">메인 메뉴로</button><br><br>
+
+  <div class="modal fade" id="servantDescDialog" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">서번트 설정</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form>
+
+            <div class="form-row">
+              <p><strong>클래스:</strong></p>
+            </div>
+            <div class="form-row">
+              <div class="col-4">
+                <button id="servantClassSaber" type="button" class="btn btn-dark btn-block" onclick="updateServantClass('servantClassSaber')">세이버</button>
+              </div>
+              <div class="col-4">
+                <button id="servantClassArcher" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassArcher')">아처</button>
+              </div>
+              <div class="col-4">
+                <button id="servantClassLancer" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassLancer')">랜서</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <div class="col-4">
+                <button id="servantClassRider" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassRider')">라이더</button>
+              </div>
+              <div class="col-4">
+                <button id="servantClassCaster" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassCaster')">캐스터</button>
+              </div>
+              <div class="col-4">
+                <button id="servantClassAssassin" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassAssassin')">어새신</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <div class="col-4">
+                <button id="servantClassBerserker" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassBerserker')">버서커</button>
+              </div>
+              <div class="col-4">
+                <button id="servantClassRuler" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassRuler')">룰러</button>
+              </div>
+              <div class="col-4">
+                <button id="servantClassAvenger" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassAvenger')">어벤저</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <div class="col-4">
+                <button id="servantClassMooncancer" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassMooncancer')">문캔서</button>
+              </div>
+              <div class="col-4">
+                <button id="servantClassAlterego" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassAlterego')">얼터에고</button>
+              </div>
+              <div class="col-4">
+                <button id="servantClassForeigner" type="button" class="btn btn-outline-dark btn-block" onclick="updateServantClass('servantClassForeigner')">포리너</button>
+              </div>
+            </div>
+            
+            <br>
+
+            <div class="form-row">
+              <p><strong>보구 카드 종류:</strong></p>
+            </div>
+            <div class="form-row">
+              <div class="col-4">
+                <button id="npCardTypeBuster" type="button" class="btn btn-danger btn-block" onclick="updateNpCardType('npCardTypeBuster')">버스터</button>
+              </div>
+              <div class="col-4">
+                <button id="npCardTypeArts" type="button" class="btn btn-outline-primary btn-block" onclick="updateNpCardType('npCardTypeArts')">아츠</button>
+              </div>
+              <div class="col-4">
+                <button id="npCardTypeQuick" type="button" class="btn btn-outline-success btn-block" onclick="updateNpCardType('npCardTypeQuick')">퀵</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <p><strong>보구 데미지 종류:</strong></p>
+            </div>
+            <div class="form-row">
+              <div class="col-6">
+                <button id="npCategorySingleTarget" type="button" class="btn btn-primary btn-block" onclick="updateNpCategory('npCategorySingleTarget')">대인</button>
+              </div>
+              <div class="col-6">
+                <button id="npCategoryAOE" type="button" class="btn btn-outline-primary btn-block" onclick="updateNpCategory('npCategoryAOE')">대군</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <p><strong>보구 레벨:</strong></p>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <button id="npLevel1" type="button" class="btn btn-primary btn-block" onclick="updateNpLevel('npLevel1')">1</button>
+              </div>
+              <div class="col">
+                <button id="npLevel2" type="button" class="btn btn-outline-primary btn-block" onclick="updateNpLevel('npLevel2')">2</button>
+              </div>
+              <div class="col">
+                <button id="npLevel3" type="button" class="btn btn-outline-primary btn-block" onclick="updateNpLevel('npLevel3')">3</button>
+              </div>
+              <div class="col">
+                <button id="npLevel4" type="button" class="btn btn-outline-primary btn-block" onclick="updateNpLevel('npLevel4')">4</button>
+              </div>
+              <div class="col">
+                <button id="npLevel5" type="button" class="btn btn-outline-primary btn-block" onclick="updateNpLevel('npLevel5')">5</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <p><strong>보구퀘 유무:</strong></p>
+            </div>
+            <div class="form-row">
+              <div class="col-6">
+                <button id="npQuestNo" type="button" class="btn btn-primary btn-block" onclick="updateNpQuest('npQuestNo')">&#10007;</button>
+              </div>
+              <div class="col-6">
+                <button id="npQuestYes" type="button" class="btn btn-outline-primary btn-block" onclick="updateNpQuest('npQuestYes')">&#10003;</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <p>
+                <strong>보구 데미지 배율 (%) &nbsp;(&nbsp;&nbsp;
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input type="checkbox" class="custom-control-input" id="checkManualNpMultiplier">
+                  <label class="custom-control-label" for="checkManualNpMultiplier">수동입력</label>
+                </div>)</strong>
+              </p>
+            </div>
+
+            <div class="form-row">
+              <input id="npMultiplier" type="text" class="form-control" value="600" readonly>
+            </div>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="buffDialog" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">버프 및 디버프 설정</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+  
+            <form>
+  
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="buffATKUp"> 공격력 상승 버프 (%):</label>
+                      <input id="buffATKUp" type="number" class="form-control" step="10" value="0" onfocus="this.select();">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="buffATKDown"> 적 방어력하락 디버프 (%):</label>
+                    <input id="buffATKDown" type="number" class="form-control" step="10" value="0" onfocus="this.select();">
+                  </div>
+              </div>
+
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="buffCardUp"> 카드성능 상승 버프 (%):</label>
+                    <input id="buffCardUp" type="number" class="form-control" step="10" value="0" onfocus="this.select();">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="buffCardDown"> 적 카드내성 하락 디버프 (%):</label>
+                    <input id="buffCardDown" type="number" class="form-control" step="10" value="0" onfocus="this.select();">
+                  </div>
+              </div>
+
+              <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="buffNPUp"> 보구 위력 상승 (%):</label>
+                    <input id="buffNPUp" type="number" class="form-control" step="10" value="0" onfocus="this.select();">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="buffSPSkillUp"> 특공 버프 (스킬) (%):</label>
+                    <input id="buffSPSkillUp" type="number" class="form-control" step="10" value="0" onfocus="this.select();">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="buffSPSkillDown">적 특방 버프 (%):</label>
+                    <input id="buffSPSkillDown" type="number" class="form-control" step="10" value="0" onfocus="this.select();">
+                  </div>
+              </div>
+  
+            </form>
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="modal fade" id="againstDialog" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">상성 설정</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form>
+
+            <div class="form-row">
+              <p><strong>상성:</strong></p>
+            </div>
+            <div class="form-row">
+              <div class="col-6">
+                <button id="againstClass100" type="button" class="btn btn-dark btn-block" onclick="updateAgainstClass('againstClass100')">무상성</button>
+              </div>
+              <div class="col-6">
+                <button id="againstClass200" type="button" class="btn btn-outline-dark btn-block" onclick="updateAgainstClass('againstClass200')">클래스 상성</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <div class="col-6">
+                <button id="againstClass150" type="button" class="btn btn-outline-dark btn-block" onclick="updateAgainstClass('againstClass150')">버서커, 얼터에고</button>
+              </div>
+              <div class="col-6">
+                <button id="againstClass050" type="button" class="btn btn-outline-dark btn-block" onclick="updateAgainstClass('againstClass050')">역상성</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <p><strong>히든 상성:</strong></p>
+            </div>
+            <div class="form-row">
+              <div class="col-4">
+                <button id="againstHidden100" type="button" class="btn btn-dark btn-block" onclick="updateAgainstHidden('againstHidden100')">무상성</button>
+              </div>
+              <div class="col-4">
+                <button id="againstHidden110" type="button" class="btn btn-outline-dark btn-block" onclick="updateAgainstHidden('againstHidden110')">상성유리</button>
+              </div>
+              <div class="col-4">
+                <button id="againstHidden090" type="button" class="btn btn-outline-dark btn-block" onclick="updateAgainstHidden('againstHidden090')">상성불리</button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="modal fade" id="desc" role="document">
     <div class="modal-dialog modal-lg" role="document">
@@ -180,7 +396,7 @@
         <div class="modal-body">
           <p> 같은 종류의 버프가 여러개 있을 경우 합산하여 계산 (예: 버스터 30% 상승, 버스터 20% 상승 버프가 동시에 있을 경우 버스터 50% 상승으로 계산).</p>
           <p> 아군에 대한 디버프는 음수의 버프로 계산 (예: 버스터 30% 상승 버프와 버스터 10% 하락 디버프가 있을 경우 버스터 20% 버프로 계산). </p>
-          <p> 이벤트 한정 공격력 상승(공뻥) 예장은 특공 버프(스킬)에 합산 (예: 신성특공 버프 50%와 이벤트 공뻥 100%가 있을 경우 특공 버프(스킬) 150%로 계산).</p>
+          <p> 이벤트 한정 공격력 상승(공뻥) 예장은 특공(스킬)에 합산 (예: 신성특공 버프 50%와 이벤트 공뻥 100%가 있을 경우 특공(스킬) 150%로 계산).</p>
           <p> 보구 자체 특공배율의 경우 배율 자체를 입력 (예: 오버차지 100% 기준 길가메시는 150%, 모드레드는 180% 입력). <br>
             특공이 없는 서번트는 0% 또는 100%를 입력하면 됨 (0%는 내부에서 100%로 변환되어 계산됨).
           </p>
@@ -192,18 +408,6 @@
       </div>
     </div>
   </div>
-
-  <br>
-  
-  <button type="button" id="calcButton" class="btn btn-primary btn-lg btn-block">계산하기</button><br><br>
-
-  <div class="jumbotron">
-    <h2 id="NPDamageMin"> 보구딜 최소: </h2> 
-    <h2 id="NPDamageMed"> 보구딜 기본: </h2> 
-    <h2 id="NPDamageMax"> 보구딜 최대: </h2> 
-  </div>
-
-  <button type="button" id="backButton" class="btn btn-secondary btn-lg btn-block">메인 메뉴로</button><br><br>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
