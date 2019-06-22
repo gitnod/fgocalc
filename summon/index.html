@@ -18,7 +18,7 @@
 <body>
 
 <div class="container">
-  
+
   <h2 align="center">FGO 소환확률 계산기</h1>
 
   <p align="center">준비된 성정석과 호부를 소모하여 특정 픽업 카드를 지정된 수만큼 뽑는데 성공할 확률을 계산합니다.</p>
@@ -26,51 +26,97 @@
   <form>
 
     <div class="form-row">
-
-    <div class="form-group col-md-6">
-      <label for="Type">픽업구분:</label>
-      <select class="form-control" id="Type">
-        <option value="0.7">5성 서번트 (단독) - 0.7%</option>
-        <option value="0.4">5성 서번트 (2중) - 0.4%</option>
-        <option value="0.333">5성 서번트 (3중) - 0.333%</option>
-        <option value="2.8">5성 개념예장 (단독) - 2.8%</option>
-        <option value="1.5">4성 서번트 (단독) - 1.5%</option>
-        <option value="1.2">4성 서번트 (2중) - 1.2%</option>
-        <option value="0.75">4성 서번트 (3중) - 0.75%</option>
-        <option value="0.7">4성 서번트 (4중) - 0.7%</option>
-        <option value="0.5">4성 서번트 (5중) - 0.5%</option>
-      </select>
-    </div>
-
-    <div class="form-group col-md-6">
-        <label for="Success">목표 보구레벨:</label>
-        <select class="form-control" id="Success">
-          <option value="1"> 1 </option>
-          <option value="2"> 2 </option>
-          <option value="3"> 3 </option>
-          <option value="4"> 4 </option>
-          <option value="5"> 5 </option>
-        </select>
-    </div>
-
-    </div>
-
-    <div class="form-row">
-
-      <div class="form-group col-md-6">
-        <label for="SQ">성정석 소비량:</label>
-        <input id="SQ" type="number" class="form-control" min="0" step="30" value="30">
+      <div class="form-group col-6">
+        <button type="button" id="calcTypeSimple" class="btn btn-success btn-block">단순 계산</button>
       </div>
-      <div class="form-group col-md-6">
-        <label for="Tickets">호부 소비량:</label>
-        <input id="Tickets" type="number" class="form-control" min="0" step="10" value="0">
+      <div class="form-group col-6">
+        <button type="button" id="calcTypeAdvanced" class="btn btn-outline-success btn-block">고급 계산</button>
       </div>
-  
     </div>
-  
-    <div class="form-group">
-        <label for="Trials">총 가챠횟수 (최대 3000회):</label>
-        <input id="Trials" type="text" class="form-control" value="10" readonly>
+
+    <div id="calcRowSimple">
+
+      <div class="form-row">
+
+        <div class="form-group col">
+          <label for="setPickupSimple">픽업 구분 (설정하려면 클릭):</label>
+          <button id="setPickupSimple" type="button" data-toggle="modal" data-target="#pickupDialog" class="btn btn-outline-dark btn-block">5성 서번트 단독 픽업 (0.7%)</button>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-6">
+          <label for="setSuccessSimple">목표 보구 레벨:</label>
+          <input id="setSuccessSimple" type="number" class="form-control" step="1" min="0" max="5" value="1" onfocus="this.select();">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="setExpenditureSimple">소비 성정석과 호부 (설정하려면 클릭):</label>
+          <button id="setExpenditureSimple" type="button" data-toggle="modal" data-target="#expenditureDialog" class="btn btn-outline-dark btn-block">성정석(30), 호부(0) - 총 가챠횟수 10회</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="calcRowAdvanced" hidden>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-3">
+          <button type="button" class="btn btn-outline-dark btn-block" id="pickup_5star_label" onclick="togglePickup_5star()">5성 픽업 서번트 수:</button>
+        </div>
+        <div class="col">
+          <button type="button" id="pickup_5star_1" class="btn btn-primary btn-block" onclick="updatePickup_5star(1)">1</button>
+        </div>
+        <div class="col">
+          <button type="button" id="pickup_5star_2" class="btn btn-outline-primary btn-block" onclick="updatePickup_5star(2)">2</button>
+        </div>
+        <div class="col">
+          <button type="button" id="pickup_5star_3" class="btn btn-outline-primary btn-block" onclick="updatePickup_5star(3)">3</button>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-3">
+          <button type="button" class="btn btn-outline-dark btn-block" id="pickup_4star_label" onclick="togglePickup_4star()">4성 픽업 서번트 수:</button>
+        </div>
+        <div class="col">
+          <button type="button" id="pickup_4star_1" class="btn btn-primary btn-block" onclick="updatePickup_4star(1)">1</button>
+        </div>
+        <div class="col">
+          <button type="button" id="pickup_4star_2" class="btn btn-outline-primary btn-block" onclick="updatePickup_4star(2)">2</button>
+        </div>
+        <div class="col">
+          <button type="button" id="pickup_4star_3" class="btn btn-outline-primary btn-block" onclick="updatePickup_4star(3)">3</button>
+        </div>
+        <div class="col">
+          <button type="button" id="pickup_4star_4" class="btn btn-outline-primary btn-block" onclick="updatePickup_4star(4)">4</button>
+        </div>
+        <div class="col">
+          <button type="button" id="pickup_4star_5" class="btn btn-outline-primary btn-block" onclick="updatePickup_4star(5)">5</button>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-6">
+          <label for="setSuccess">목표 보구 레벨 (설정하려면 클릭):</label>
+          <button id="setSuccess" type="button" data-toggle="modal" data-target="#successDialog" class="btn btn-outline-dark btn-block">5성(1)</button>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="setExpenditure">소비 성정석과 호부 (설정하려면 클릭):</label>
+          <button id="setExpenditure" type="button" data-toggle="modal" data-target="#expenditureDialog" class="btn btn-outline-dark btn-block">성정석(30), 호부(0) - 총 가챠횟수 10회</button>
+        </div>
+
+      </div>
+
     </div>
 
   </form>
@@ -80,7 +126,7 @@
   <button type="button" id="calcButton" class="btn btn-primary btn-lg btn-block">계산하기</button><br><br>
 
   <div class="jumbotron">
-    <h2 id="drawProb"> 성공확률: </h2> 
+    <h2 id="drawProb"> 성공확률: 6.7835% </h2> 
   </div>
 
   <button type="button" id="backButton" class="btn btn-secondary btn-lg btn-block">메인 메뉴로</button><br>
@@ -88,6 +134,200 @@
   <p>10연챠시 4성 확정은 계산에 영향을 미치지 않을 가능성이 높음. 자세한 내용은 <a data-toggle="modal" href="#note">클릭</a></p>
 
   <p>성공확률에서 소수점 넷째 자리 미만은 버림.</p>
+
+  <div class="modal fade" id="pickupDialog" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">픽업 설정</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <p>
+            원하는 픽업을 선택하세요:
+          <p>
+
+          <form>
+
+            <div class="form-row">
+              <div class="col"><strong>[5성 서번트 픽업]</strong></div>
+            </div>
+
+            <div class="form-row">
+              <div class="col">
+                <button type="button" class="btn btn-primary btn-block" id="pickupSimple_5star_1" onclick="updateSimplePickup(5,1)">단독</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-primary btn-block" id="pickupSimple_5star_2" onclick="updateSimplePickup(5,2)">2중</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-primary btn-block" id="pickupSimple_5star_3" onclick="updateSimplePickup(5,3)">3중</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <div class="col"><strong>[4성 서번트 픽업]</strong></div>
+            </div>
+
+            <div class="form-row">
+              <div class="col">
+                <button type="button" class="btn btn-primary btn-block" id="pickupSimple_4star_1" onclick="updateSimplePickup(4,1)">단독</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-primary btn-block" id="pickupSimple_4star_2" onclick="updateSimplePickup(4,2)">2중</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-primary btn-block" id="pickupSimple_4star_3" onclick="updateSimplePickup(4,3)">3중</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-primary btn-block" id="pickupSimple_4star_4" onclick="updateSimplePickup(4,4)">4중</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-primary btn-block" id="pickupSimple_4star_5" onclick="updateSimplePickup(4,5)">5중</button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <div class="col"><strong>[5성 개념예장 픽업]</strong></div>
+            </div>
+
+            <div class="form-row">
+              <div class="col">
+                <button type="button" class="btn btn-primary btn-block" id="pickupSimple_equip_1" onclick="updateSimplePickup(0,1)">단독</button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="successDialog" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">목표 설정</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <p>
+            목표 픽업 서번트와 보구 레벨을 설정하세요: &nbsp;
+            <!-- <button id="successInputInitialize" type="button" class="btn btn-danger btn-sm" onclick="initializeSuccessInput();">설정 초기화</button> -->
+          <p>
+
+          <form>
+
+            <div class="form-row">
+              <div class="col"><strong>[5성 픽업 서번트]</strong></div>
+            </div>
+
+            <div class="form-row">
+              <div class="col" id="pickup_5star_1_input_container">
+                <label for="pickup_5star_1_input">1번 픽업:</label>
+                <input id="pickup_5star_1_input" type="number" class="form-control" step="1" min="0" max="5" value="1" onfocus="this.select();">
+              </div>
+              <div class="col" id="pickup_5star_2_input_container" hidden>
+                <label for="pickup_5star_2_input">2번 픽업:</label>
+                <input id="pickup_5star_2_input" type="number" class="form-control" step="1" min="0" max="5" value="0" onfocus="this.select();">
+              </div>
+              <div class="col" id="pickup_5star_3_input_container" hidden>
+                <label for="pickup_5star_3_input">3번 픽업:</label>
+                <input id="pickup_5star_3_input" type="number" class="form-control" step="1" min="0" max="5" value="0" onfocus="this.select();">
+              </div>
+            </div>
+
+            <br>
+
+            <div class="form-row">
+              <div class="col"><strong>[4성 픽업 서번트]</strong></div>
+            </div>
+
+            <div class="form-row">
+              <div class="col" id="pickup_4star_1_input_container">
+                <label for="pickup_4star_1_input">1번 픽업:</label>
+                <input id="pickup_4star_1_input" type="number" class="form-control" step="1" min="0" max="5" value="0" onfocus="this.select();">
+              </div>
+              <div class="col" id="pickup_4star_2_input_container" hidden>
+                <label for="pickup_4star_2_input">2번 픽업:</label>
+                <input id="pickup_4star_2_input" type="number" class="form-control" step="1" min="0" max="5" value="0" onfocus="this.select();">
+              </div>
+              <div class="col" id="pickup_4star_3_input_container" hidden>
+                <label for="pickup_4star_3_input">3번 픽업:</label>
+                <input id="pickup_4star_3_input" type="number" class="form-control" step="1" min="0" max="5" value="0" onfocus="this.select();">
+              </div>
+              <div class="col" id="pickup_4star_4_input_container" hidden>
+                <label for="pickup_4star_4_input">4번 픽업:</label>
+                <input id="pickup_4star_4_input" type="number" class="form-control" step="1" min="0" max="5" value="0" onfocus="this.select();">
+              </div>
+              <div class="col" id="pickup_4star_5_input_container" hidden>
+                <label for="pickup_4star_5_input">5번 픽업:</label>
+                <input id="pickup_4star_5_input" type="number" class="form-control" step="1" min="0" max="5" value="0" onfocus="this.select();">
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="expenditureDialog" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">성정석 및 호부 설정</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <p>
+            소비할 성정석과 호부를 입력하세요: &nbsp;
+            <!-- <button id="expenditureInputInitialize" type="button" class="btn btn-danger btn-sm" onclick="initializeExpenditureInput();">설정 초기화</button> -->
+          <p>
+
+          <form>
+
+            <div class="form-row">
+              <div class="col">
+                <label for="expenditureSQ">성정석:</label>
+                <input id="expenditureSQ" type="number" class="form-control" step="30" min="0" value="30" onfocus="this.select();">
+              </div>
+              <div class="col">
+                <label for="expenditureTicket">호부:</label>
+                <input id="expenditureTicket" type="number" class="form-control" step="10" min="0" value="0" onfocus="this.select();">
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="modal fade" id="note" role="document">
     <div class="modal-dialog" role="document">
@@ -134,6 +374,9 @@
   <!-- library for loading CSV files -->
   <script src="../lib/PapaParse/papaparse.min.js"></script>
   
+  <!-- library for multinomial distribution -->
+  <script src="../lib/multinom/multinom.js"></script>
+
   <!-- summon calculator script -->
   <script src="summonScript.js"></script>
 
