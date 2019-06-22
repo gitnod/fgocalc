@@ -1,3 +1,4 @@
+
 var summonCalcButton = document.getElementById("summonCalcButton");
 var expCalcButton = document.getElementById("expCalcButton");
 var NPCalcButton = document.getElementById("NPCalcButton");
