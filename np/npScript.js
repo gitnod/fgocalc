@@ -316,9 +316,9 @@ calcButton.addEventListener("click", function() {
     var npDamage = baseDamage * npDamageMultiplier * buffMultiplier;
 
     // update text
-    NPDamageMin.innerHTML = "보구딜 최소: " + (npDamage * 0.9).toFixed(0);
-    NPDamageMed.innerHTML = "보구딜 기본: " + npDamage.toFixed(0);
-    NPDamageMax.innerHTML = "보구딜 최대: " + (npDamage * 1.1).toFixed(0);
+    NPDamageMin.innerHTML = "최소: " + (npDamage * 0.9).toFixed(0);
+    NPDamageMed.innerHTML = "기본: " + npDamage.toFixed(0);
+    NPDamageMax.innerHTML = "최대: " + (npDamage * 1.1).toFixed(0);
 })
 
 $("#servantDescDialog").on("hidden.bs.modal", function(e) {
