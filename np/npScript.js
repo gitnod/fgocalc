@@ -302,6 +302,9 @@ function updateAgainstHidden(id) {
 // compute NP damage when the button is clicked
 calcButton.addEventListener("click", function() {
 
+    // refresh buff info to reflect latest SP buff input
+    updateBuff();
+
     // base damage and np damage multiplier
     var baseDamage = Number(ATK.value) * 0.23 * servantClassDictionary[servantInfo["servantClass"]];
     var npDamageMultiplier = npCardTypeMultiplierArray[npCardTypeDictionary[servantInfo["npCardType"]]] * Number(npMultiplier.value) / 100;
