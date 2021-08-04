@@ -1,7 +1,7 @@
 
 var pickup_5star = 1;
 var pickup_4star = 1;
-var pickupProb_5star = [0.007, 0.004, 0.00333];
+var pickupProb_5star = [0.008, 0.004, 0.00333];
 var pickupProb_4star = [0.015, 0.012, 0.0075, 0.007, 0.005];
 var pickupProb_equip = [0.028];
 var pickupSimpleProb = pickupProb_5star[0];
@@ -179,7 +179,12 @@ function updateSuccessDisplay() {
 // update expenditure display
 function updateExpenditureDisplay() {
 
-    var expenditureText = '성정석(' + expenditureSQ.value + '), 호부(' + expenditureTicket.value + ') - 총 가챠 ' + Math.floor(Number(expenditureSQ.value)/3 + Number(expenditureTicket.value)) + '회';
+    // read number of trials
+    var trialsBase = Math.floor(Number(expenditureSQ.value)/3 + Number(expenditureTicket.value));
+    var trialsBonus = Math.floor(trialsBase / 10);
+    var trials = trialsBase + trialsBonus;
+
+    var expenditureText = '성정석(' + expenditureSQ.value + '), 호부(' + expenditureTicket.value + ') - 총 가챠 ' + trials + '회' + ' (보너스 ' + trialsBonus + '회 포함)';
     setExpenditure.innerHTML = expenditureText;
     setExpenditureSimple.innerHTML = expenditureText;
 
@@ -189,7 +194,9 @@ function updateExpenditureDisplay() {
 function computeAndUpdateSuccessProbabilitySimple() {
 
     // read number of trials
-    var trials = Math.floor(Number(expenditureSQ.value)/3 + Number(expenditureTicket.value));
+    var trialsBase = Math.floor(Number(expenditureSQ.value)/3 + Number(expenditureTicket.value));
+    var trialsBonus = Math.floor(trialsBase / 10);
+    var trials = trialsBase + trialsBonus;
 
     // compute and update success probability. Check range before computation.
     var success = Number(setSuccessSimple.value);
